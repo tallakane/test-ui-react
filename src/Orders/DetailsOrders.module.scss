@@ -1,0 +1,52 @@
+.dialog {
+  position: relative;
+  padding: 44px 68px 56px;
+  min-height: 600px;
+  color: var(--text);
+
+  .close {
+    position: absolute !important; top: 22px; right: 60px;
+    :global(.material-icons) { font-size: 20px; }
+  }
+
+  .header {
+    display: flex; align-items: center; gap: 18px;
+
+    .thumb {
+      width: 92px; height: 92px; border-radius: 14px;
+      background: #f6f1e8;
+      display: grid; place-items: center;
+      :global(.material-icons) { font-size: 44px; color: #b88a2e; }
+    }
+    .info { flex: 1; }
+    .name { font-size: 20px; font-weight: 500; }
+    .sub { font-size: 14px; margin-top: 6px; }
+    .ref { font-size: 12px; font-weight: 600; align-self: flex-end; margin-bottom: 14px; }
+  }
+
+  .deco {
+    text-align: center; margin-top: 4px;
+    small { font-size: 17px; color: var(--muted); }
+    h3 { margin: 4px 0 0; font-size: 24px; font-weight: 500; color: #111; }
+  }
+
+  .chips {
+    display: flex; gap: 10px; margin: 18px 0 26px -8px;
+    .chip {
+      display: inline-flex; align-items: center; gap: 6px;
+      background: #eef0f6; color: var(--text);
+      border-radius: 999px; padding: 6px 14px; font-size: 12px;
+      :global(.material-icons) { font-size: 14px; }
+    }
+  }
+
+  .sectionTitle { font-size: 13px; letter-spacing: .5px; margin: 0 0 6px -8px; color: var(--text); }
+
+  .timeline { width: 100%; height: auto; display: block; margin: 0 0 24px -8px; }
+
+  .comment {
+    margin-left: -8px;
+    .commentTitle { color: var(--blue); font-weight: 600; text-decoration: underline; font-size: 14px; }
+    p { margin: 14px 0 0; color: #9a9ca8; font-size: 16px; line-height: 1.45; }
+  }
+}

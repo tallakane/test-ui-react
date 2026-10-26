@@ -1,0 +1,27 @@
+:root {
+  --blue: #0b3a9e;
+  --blue-dark: #082a75;
+  --text: #2d2f4a;
+  --muted: #7b7d93;
+  --bg-page: #faf6f4;
+  --orange: #e08a00;
+  --green: #12b886;
+  --red: #e03131;
+  --cyan: #1cb5e0;
+  --indigo: #4c5bd4;
+}
+
+* { box-sizing: border-box; }
+
+html, body, #root {
+  height: 100%;
+  margin: 0;
+  font-family: 'Inter', 'Roboto', sans-serif;
+  color: var(--text);
+}
+
+body {
+  background: linear-gradient(135deg, #f6e6fb 0%, #e3e6ff 35%, #c3cffd 100%) !important;
+}
+
+#root { min-height: 100%; height: auto; }
