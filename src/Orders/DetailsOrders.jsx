@@ -1,44 +1,100 @@
 import Dialog from '@mui/material/Dialog';
+import DialogContent from '@mui/material/DialogContent';
 import IconButton from '@mui/material/IconButton';
+import Box from '@mui/material/Box';
+import Stack from '@mui/material/Stack';
+import Typography from '@mui/material/Typography';
+import Chip from '@mui/material/Chip';
+import Link from '@mui/material/Link';
+import useMediaQuery from '@mui/material/useMediaQuery';
+import { useTheme } from '@mui/material/styles';
 import Icon from '../Icon';
-import styles from './DetailsOrders.module.scss';
 
 export default function DetailsOrders({ open, onClose }) {
+  const theme = useTheme();
+  const fullScreen = useMediaQuery(theme.breakpoints.down('sm'));
+
   return (
     <Dialog
       open={open}
       onClose={onClose}
+      fullScreen={fullScreen}
       fullWidth
       maxWidth={false}
-      slotProps={{ paper: { sx: { width: 740, maxWidth: '95vw', borderRadius: '28px' } } }}
+      slotProps={{
+        paper: {
+          sx: {
+            width: 740,
+            maxWidth: fullScreen ? '100%' : '95vw',
+            borderRadius: fullScreen ? 0 : '28px',
+          },
+        },
+      }}
     >
-      <div className={styles.dialog}>
-        <IconButton className={styles.close} onClick={onClose} aria-label="close">
-          <Icon name="close" />
+      <DialogContent
+        sx={{
+          position: 'relative',
+          p: { xs: '56px 20px 32px', sm: '44px 68px 56px' },
+          minHeight: { sm: 600 },
+          color: 'var(--text)',
+        }}
+      >
+        <IconButton
+          onClick={onClose}
+          aria-label="close"
+          sx={{ position: 'absolute', top: 22, right: { xs: 16, sm: 60 } }}
+        >
+          <Icon name="close" style={{ fontSize: 20 }} />
         </IconButton>
 
-        <div className={styles.header}>
-          <div className={styles.thumb}><Icon name="local_florist" /></div>
-          <div className={styles.info}>
-            <div className={styles.name}>Zara Perfumes</div>
-            <div className={styles.sub}>100 flacons · 100 mL</div>
-          </div>
-          <div className={styles.ref}>BL_2024_05_22_001</div>
-        </div>
+        <Stack direction="row" alignItems="center" flexWrap="wrap" gap="18px">
+          <Box
+            sx={{
+              width: 92,
+              height: 92,
+              borderRadius: '14px',
+              bgcolor: '#f6f1e8',
+              display: 'grid',
+              placeItems: 'center',
+            }}
+          >
+            <Icon name="local_florist" style={{ fontSize: 44, color: '#b88a2e' }} />
+          </Box>
 
-        <div className={styles.deco}>
-          <small>Decoration</small>
-          <h3>Gold screen printing + zamac cap</h3>
-        </div>
+          <Box sx={{ flex: 1 }}>
+            <Typography sx={{ fontSize: 20, fontWeight: 500 }}>Zara Perfumes</Typography>
+            <Typography sx={{ fontSize: 14, mt: '6px' }}>100 flacons · 100 mL</Typography>
+          </Box>
 
-        <div className={styles.chips}>
-          <span className={styles.chip}><Icon name="mail_outline" /> f.diagne@diagne.sn</span>
-          <span className={styles.chip}><Icon name="phone" /> +34 77 812 34 56</span>
-        </div>
+          <Typography sx={{ fontSize: 12, fontWeight: 600, alignSelf: 'flex-end', mb: '14px' }}>
+            BL_2024_05_22_001
+          </Typography>
+        </Stack>
 
-        <div className={styles.sectionTitle}>ORDER STATUS</div>
+        <Box sx={{ textAlign: 'center', mt: '4px' }}>
+          <Typography component="small" sx={{ display: 'block', fontSize: 17, color: 'var(--muted)' }}>
+            Decoration
+          </Typography>
+          <Typography variant="h3" sx={{ mt: '4px', fontSize: { xs: 20, sm: 24 }, fontWeight: 500, color: '#111' }}>
+            Gold screen printing + zamac cap
+          </Typography>
+        </Box>
 
-        <svg className={styles.timeline} viewBox="0 0 620 330" xmlns="http://www.w3.org/2000/svg">
+        <Stack direction="row" flexWrap="wrap" gap="10px" sx={{ m: { xs: '18px 0 26px', sm: '18px 0 26px -8px' } }}>
+          <Chip icon={<Icon name="mail_outline" style={{ fontSize: 14 }} />} label="f.diagne@diagne.sn" />
+          <Chip icon={<Icon name="phone" style={{ fontSize: 14 }} />} label="+34 77 812 34 56" />
+        </Stack>
+
+        <Typography sx={{ fontSize: 13, letterSpacing: '.5px', mb: '6px', ml: { sm: '-8px' } }}>
+          ORDER STATUS
+        </Typography>
+
+        <Box
+          component="svg"
+          viewBox="0 0 620 330"
+          xmlns="http://www.w3.org/2000/svg"
+          sx={{ width: '100%', height: 'auto', display: 'block', mb: '24px', ml: { sm: '-8px' } }}
+        >
           <path
             d="M205 50 Q170 65 148 95 T374 124 Q250 170 250 205 T533 295"
             fill="none"
@@ -68,16 +124,22 @@ export default function DetailsOrders({ open, onClose }) {
           <circle cx={533} cy={210} r={32} fill="#fff" stroke="#10c98f" strokeWidth={4} />
           <text x={533} y={221} textAnchor="middle" fontSize={30} fill="#10c98f">5</text>
           <text x={487} y={215} textAnchor="end" fontSize={14}>Delivered</text>
-        </svg>
+        </Box>
 
-        <div className={styles.comment}>
-          <a className={styles.commentTitle}>Comment</a>
-          <p>
+        <Box sx={{ ml: { sm: '-8px' } }}>
+          <Link
+            component="button"
+            underline="always"
+            sx={{ color: 'var(--blue)', fontWeight: 600, fontSize: 14 }}
+          >
+            Comment
+          </Link>
+          <Typography sx={{ mt: '14px', color: '#9a9ca8', fontSize: 16, lineHeight: 1.45 }}>
             Lorem ipsum dolor sit amet consectetur. Velit amet integer amet ac blandit
             magnis porta pretium.
-          </p>
-        </div>
-      </div>
+          </Typography>
+        </Box>
+      </DialogContent>
     </Dialog>
   );
 }
